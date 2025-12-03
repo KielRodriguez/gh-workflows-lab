@@ -1,0 +1,20 @@
+name: reusable-2
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Reusable 2
+        shell: bash
+        run: |
+          echo "Running reusable 2"
+          echo "$SUPER_SECRET" >> hello_world.txt
+          cat hello_world.txt
+        env:
+          SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
