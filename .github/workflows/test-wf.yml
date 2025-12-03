@@ -10,11 +10,9 @@ permissions:
 
 jobs:
   job-uat-1:
-    runs-on: ubuntu-latest
     environment: 'uat'
     uses: ./.github/workflows/reusable-1.yml
 
   job-uat-2:
-    runs-on: ubuntu-latest
     environment: 'uat'
     uses: ./.github/workflows/reusable-2.yml
