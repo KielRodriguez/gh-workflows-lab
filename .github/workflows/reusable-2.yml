@@ -2,10 +2,16 @@ name: reusable-2
 
 on:
   workflow_call:
+    inputs:
+      environment_target:
+        description: 'Specifies the target environment for the workflow execution (e.g., dev, uat, prod).'
+        type: string
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment_target }}
     steps:
       - name: ⬇️ Checkout Code
         uses: actions/checkout@v4
