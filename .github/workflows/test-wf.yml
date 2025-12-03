@@ -3,16 +3,24 @@ name: workflow-test
 on:
   workflow_dispatch:
 
-
 permissions:
   contents: read
   actions: write
 
 jobs:
-  job-uat-1:
+  # Job 1: Llama al primer workflow reusable
+  call-reusable-1:
+    # Propiedades de control (PERMITIDAS CON 'USES')
     environment: 'uat'
+    
+    # Propiedad de delegación (OBLIGATORIA)
     uses: ./.github/workflows/reusable-1.yml
 
-  job-uat-2:
+  # Job 2: Llama al segundo workflow reusable
+  call-reusable-2:
+    # Propiedades de control (PERMITIDAS CON 'USES')
+    needs: call-reusable-1
     environment: 'uat'
+    
+    # Propiedad de delegación (OBLIGATORIA)
     uses: ./.github/workflows/reusable-2.yml
