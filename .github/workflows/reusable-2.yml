@@ -2,16 +2,10 @@ name: reusable-2
 
 on:
   workflow_call:
-    inputs:
-      stage:
-        description: 'Stage (e.g., uat, prod)'
-        type: string
-        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.stage }}
     steps:
       - name: ⬇️ Checkout Code
         uses: actions/checkout@v4

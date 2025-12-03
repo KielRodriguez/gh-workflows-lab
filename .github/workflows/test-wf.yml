@@ -9,13 +9,12 @@ permissions:
   actions: write
 
 jobs:
-  step-uat-1:
-    uses: ./.github/workflows/reusable-1.yml
-    with:
-      stage: 'uat'
+  job-uat-1:
+    runs-on: ubuntu-latest
+    environment: 'uat'
+    steps:
+      - name: "reusable-1"
+        uses: ./.github/workflows/reusable-1.yml
 
-  step-uat-2:
-    needs: [ step-uat-1 ]
-    uses: ./.github/workflows/reusable-2.yml
-    with:
-      stage: 'uat'
+      - name: "reusable-2"
+        uses: ./.github/workflows/reusable-2.yml
