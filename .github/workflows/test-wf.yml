@@ -11,6 +11,10 @@ permissions:
 jobs:
   step-uat-1:
     uses: ./.github/workflows/reusable-1.yml
+    with:
+      stage: 'uat'
 
   step-uat-2:
     uses: ./.github/workflows/reusable-2.yml
+    with:
+      stage: 'uat'
