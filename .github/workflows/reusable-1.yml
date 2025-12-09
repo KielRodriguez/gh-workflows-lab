@@ -7,6 +7,11 @@ on:
         description: 'Specifies the target environment for the workflow execution (e.g., dev, uat, prod).'
         type: string
         required: true
+    secrets:
+      SUPER_SECRET:
+        description: "Super Secret"
+        required: false
+        default: "Default value"
     outputs:
       super_secret:
         description: "Super secret value"
