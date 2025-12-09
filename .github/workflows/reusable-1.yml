@@ -35,8 +35,8 @@ jobs:
           echo "Running reusable 1"
 
           # Guardamos el secret en un archivo
-          echo "Super secret value is: \"$SUPER_SECRET\""
           echo "$SUPER_SECRET" > file.txt
+          echo "Values is: $(cat file.txt)"
 
           # Exportamos el output (nota el $)
           echo "super_secret=$(cat file.txt)" >> $GITHUB_OUTPUT
