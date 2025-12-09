@@ -16,17 +16,24 @@ jobs:
   reusable:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment_target }}
+
     outputs:
-      super_secret: ${{ steps.reusable.outputs.super_secret }}
+      super_secret: ${{ steps.reusable_step.outputs.super_secret }}
+
     steps:
       - name: ⬇️ Checkout Code
         uses: actions/checkout@v4
 
       - name: 🛠️ Reusable 1
-        id: reusable
+        id: reusable_step
         shell: bash
         run: |
           echo "Running reusable 1"
-          echo "super_secret=$SUPER_SECRET" >> GITHUB_OUTPUT
+
+          # Guardamos el secret en un archivo
+          echo "$SUPER_SECRET" > file.txt
+
+          # Exportamos el output (nota el $)
+          echo "super_secret=$(cat file.txt)" >> $GITHUB_OUTPUT
         env:
           SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
