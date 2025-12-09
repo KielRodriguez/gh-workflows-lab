@@ -7,20 +7,26 @@ on:
         description: 'Specifies the target environment for the workflow execution (e.g., dev, uat, prod).'
         type: string
         required: true
+    outputs:
+      super_secret:
+        description: "Super secret value"
+        value: ${{ jobs.reusable.outputs.super_secret }}
 
 jobs:
-  build:
+  reusable:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment_target }}
+    outputs:
+      super_secret: ${{ steps.reusable.outputs.super_secret }}
     steps:
       - name: ⬇️ Checkout Code
         uses: actions/checkout@v4
 
       - name: 🛠️ Reusable 1
+        id: reusable
         shell: bash
         run: |
           echo "Running reusable 1"
-          echo "$SUPER_SECRET" >> hello_world.txt
-          cat hello_world.txt
+          echo "super_secret=$SUPER_SECRET" >> GITHUB_OUTPUT
         env:
           SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
